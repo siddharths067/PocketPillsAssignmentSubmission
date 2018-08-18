@@ -46,8 +46,6 @@ public class PatientAddressDaoImpl implements PatientAddressDao {
             PreparedStatement QueryString = db.prepareStatement("select * from patient_address where patient_id=?");
             QueryString.setLong(1, patientId);
             ResultSet FetchedPatientSet = QueryString.executeQuery();
-            System.out.println(QueryString.toString());
-            System.out.println(FetchedPatientSet.getFetchSize());
             while (FetchedPatientSet.next())
                 if(FetchedPatientSet.getBoolean("enabled") == true)
                     FetchedPatientAddresses.add(
@@ -66,7 +64,6 @@ public class PatientAddressDaoImpl implements PatientAddressDao {
         } catch (Exception e) {
             System.out.print(e.getMessage());
         }
-        System.out.println("The length of list is " + FetchedPatientAddresses.size());
         return CompletableFuture.completedFuture(FetchedPatientAddresses);
     }
 

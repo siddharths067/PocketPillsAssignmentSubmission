@@ -96,12 +96,9 @@ public class AddressController extends Controller {
      * @see utils.AppUtil#getBadRequestObject(String) if unsuccessfull
      */
     public CompletionStage<Result> addPatientAddress() {
-        System.out.println("Entered Controller Succesfully ");
         CompletionStage<Result> res;
         try {
             Long patient_id = new Long(request().header("patient_id").get());
-            System.out.println("patient id for insertion " + patient_id);
-            System.out.println("Trying to get Data");
             res = (new PatientAddressDaoImpl().addPatientAddress(
                     patient_id,
                     new PatientAddress(
@@ -123,7 +120,6 @@ public class AddressController extends Controller {
                     }
                     , this.httpExecutionContext.current());
         } catch (Exception e) {
-            System.out.println("An Exception occcured here -> " + e.getMessage());
             return CompletableFuture.completedFuture(internalServerError(e.getMessage()));
         }
         return res;
