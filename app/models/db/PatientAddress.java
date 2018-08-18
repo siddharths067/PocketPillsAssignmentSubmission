@@ -15,8 +15,9 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "patient_address")
-@Index(columnNames = "patient_id, enabled")
+@Index(columnNames = "patient_id")
 public class PatientAddress extends BaseModel implements Serializable {
+
 
     @Column(name = "patient_id")
     @Index
@@ -52,4 +53,70 @@ public class PatientAddress extends BaseModel implements Serializable {
     @Size(min = 2, max = 4)
     private String country = "ca";
 
+    public PatientAddress(long patientId, String nickname, String province, String postalCode, String streetAddress, String city, String country){
+        this.patientId = patientId;
+        this.nickname = nickname;
+        this.province = province;
+        this.postalCode = postalCode;
+        this.streetAddress = streetAddress;
+        this.city = city;
+        this.country = country;
+
+    }
+
+    public void setPatientId(long patientId){
+        this.patientId = patientId;
+    }
+
+    public long getPatientId(){
+        return this.patientId;
+    }
+
+    public void setNickname(String nickname){
+        this.nickname = nickname;
+    }
+
+    public String getNickname(){
+        return this.nickname;
+    }
+
+    public void setProvice(String province){
+        this.province = province;
+    }
+
+    public String getProvince(){
+        return this.province;
+    }
+
+    public void setPostalCode(String postalCode){
+        this.postalCode = postalCode;
+    }
+
+    public String getPostalCode(){
+        return this.postalCode;
+    }
+
+    public void setStreetAddress(String streetAddress){
+        this.streetAddress = streetAddress;
+    }
+
+    public String getStreetAddress(){
+        return this.streetAddress;
+    }
+
+    public void setCountry(String country){
+        this.country = country;
+    }
+
+    public String getCountry(){
+        return this.country;
+    }
+
+    public void setCity(String city){
+        this.city = city;
+    }
+
+    public String getCity(){
+        return this.city;
+    }
 }

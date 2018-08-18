@@ -1,5 +1,6 @@
 package utils;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import play.libs.Json;
 
@@ -33,7 +34,7 @@ public class AppUtil {
      * @param message message for success
      * @return JsonObject for success message
      */
-    public static ObjectNode getSuccessObject(String message) {
+    public static ObjectNode getSuccessObject(JsonNode message) {
         ObjectNode successObj = Json.newObject();
         successObj.put(STR_SUCCESS, true);
         successObj.put(STR_MESSAGE, message);
