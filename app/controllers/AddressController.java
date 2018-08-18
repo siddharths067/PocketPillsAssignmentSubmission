@@ -18,7 +18,7 @@ import javax.inject.Inject;
 public class AddressController extends Controller {
 
     /*
-     * HTTP Execution context saved incase queries go long
+     * HTTP Execution context saved in case queries go long
      * */
 
     private HttpExecutionContext httpExecutionContext;
@@ -112,9 +112,8 @@ public class AddressController extends Controller {
                     )
             )).thenApplyAsync(
                     InsertionStatus -> {
-                        System.out.println("Data Recieved Maybe");
                         if (InsertionStatus != -1L)
-                            return ok("Record Inserted with id = " + InsertionStatus);
+                            return ok(InsertionStatus.toString()); // Removed Success Message
                         else
                             return internalServerError("Record not Inserted, Contact Admin");
                     }
@@ -141,12 +140,12 @@ public class AddressController extends Controller {
             res = (new PatientAddressDaoImpl().deletePatientAddress(addressId, 0))
                     .thenApplyAsync(StatusBoolean -> {
                         if (StatusBoolean == true)
-                            return ok("Soft Deletion Successful");
+                            return ok(StatusBoolean.toString()); // Removed Deletion Successful message
                         else
                             return internalServerError("Soft Deletion Failed");
                     });
         } catch (Exception e) {
-            return CompletableFuture.completedFuture(ok("Deletion Failed " + e.getMessage()));
+            return CompletableFuture.completedFuture(internalServerError("Deletion Failed " + e.getMessage()));
         }
         return res;
     }
